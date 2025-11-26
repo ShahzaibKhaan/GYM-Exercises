@@ -1,16 +1,10 @@
+
 import { View, Text, Button, FlatList, TouchableOpacity, Image } from 'react-native';
 import { useState } from 'react';
 
 export default function HomeScreen({ navigation }) {
   const [exercises, setExercises] = useState([
-//     { 
-//   id: '1', 
-//   title: 'Push-up', 
-//   description: 'Do 20 reps', 
-//   image: require('../../assets/pushup.png') 
-// },
-
-    { id: '1', title: 'Push-up', description: 'Do 20 reps', image:''},
+    { id: '1', title: 'Push-up', description: 'Do 20 reps', image: ''},
     { id: '2', title: 'Squats', description: 'Do 15 reps', image: '' },
     {id: '3', title: 'Bicep', description: 'Do 15 reps', image: ''},
     {id: '4', title: 'Tricep', description: 'Do 15 reps', image: ''},
@@ -22,13 +16,19 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={{ padding: 20 }}>
-      <Button title="Add Exercise" onPress={() => navigation.navigate('AddExerciseScreen')} />
+      <Button title="Add Exercise" onPress={() => navigation.navigate('AddExerciseScreen', { 
+  addExercise: (newExercise) => {
+    setExercises([...exercises, newExercise]);
+  }
+})}
+/>
 
       <FlatList
         data={exercises}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('DetailScreen', item)}>
+          <TouchableOpacity onPress={() => navigation.navigate('DetailScreen', { exercise: item })}
+>
             <Text style={{ fontSize: 20, marginVertical: 10 }}>{item.title}</Text>
           </TouchableOpacity>
         )}

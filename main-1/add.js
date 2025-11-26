@@ -1,14 +1,24 @@
 import { View, TextInput, Button } from 'react-native';
 import { useState } from 'react';
 
-export default function AddExerciseScreen({ navigation }) {
+export default function AddExerciseScreen({ navigation, route }) {
+
+  const { addExercise } = route.params;
+
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [image, setImage] = useState('');
 
   const handleAdd = () => {
-    alert('Exercise Added! (Backend abhi nahi but concept show hoga)');
-    navigation.goBack();
+    const newExercise = {
+      id: Date.now().toString(),
+      title: title,
+      description: desc,
+      image: image,
+    };
+
+    addExercise(newExercise);   // ← HomeScreen me add karega
+    navigation.goBack();        // ← wapas HomeScreen
   };
 
   return (
