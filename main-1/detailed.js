@@ -8,7 +8,6 @@ export default function DetailScreen({ route }) {
       
       {exercise.image ? (
         <Image 
-          source={{ uri: exercise.image }} 
           style={{ width: '100%', height: 200, resizeMode: 'cover', borderRadius: 10 }} 
         />
       ) : (

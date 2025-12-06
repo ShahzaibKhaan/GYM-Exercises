@@ -17,8 +17,8 @@ export default function AddExerciseScreen({ navigation, route }) {
       image: image,
     };
 
-    addExercise(newExercise);   // ← HomeScreen me add karega
-    navigation.goBack();        // ← wapas HomeScreen
+    addExercise(newExercise);   
+    navigation.goBack();        
   };
 
   return (
